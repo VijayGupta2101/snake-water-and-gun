@@ -7,7 +7,7 @@ let playerName = "Player";
 let computerName = "Computer";
 
 const computerNamesList = [
-    "Bot Alpha", "Robo-Snake", "Terminator", "HAL 9000", 
+    "Bot Alpha", "Robo-Snake", "Terminator", "HAL 9000",
     "GLaDOS", "C-3PO", "Ultron", "Wall-E", "Byte Master", "Cypher"
 ];
 
@@ -71,14 +71,14 @@ function initGame() {
     // Reset scores
     scores = { p1: 0, p2: 0 };
     updateScoreBoard();
-    
+
     // Set Names on UI
     p1NameEl.innerText = playerName;
     p1NameEl.title = playerName; // For hover overflowing text
-    
+
     p2NameEl.innerText = computerName;
     p2NameEl.title = computerName;
-    
+
     revealP1Name.innerText = playerName;
     revealP2Name.innerText = computerName;
 
@@ -99,10 +99,10 @@ function exitGame() {
 }
 
 function makeChoice(choice) {
-    if(revealArea.classList.contains('hidden') === false) {
+    if (revealArea.classList.contains('hidden') === false) {
         return; // Prevents clicking during reveal
     }
-    
+
     currentRoundChoices.p1 = choice;
     currentRoundChoices.p2 = getComputerChoice();
     resolveRound();
@@ -118,20 +118,20 @@ function resolveRound() {
     // Hide choices layout smoothly (using generic hidden class which acts fast here now via display:none)
     turnBanner.classList.add('hidden');
     choicesContainer.classList.add('hidden');
-    
+
     // Set icons
     revealP1Choice.innerText = icons[currentRoundChoices.p1];
     revealP2Choice.innerText = icons[currentRoundChoices.p2];
-    
+
     // Show Reveal Area (contains the next round button explicitly now)
     revealArea.classList.remove('hidden');
 
     // Determine winner
     const result = determineWinner(currentRoundChoices.p1, currentRoundChoices.p2);
-    
+
     // Reset styling
     roundResultText.className = '';
-    
+
     let winnerText = "";
     if (result === 0) {
         winnerText = "It's a Draw!";
@@ -160,7 +160,7 @@ function resolveRound() {
 function determineWinner(c1, c2) {
     // 0: Draw, 1: Player 1, 2: Player 2
     if (c1 === c2) return 0;
-    
+
     if (c1 === 'snake') {
         return c2 === 'water' ? 1 : 2; // snake beats water, gun beats snake
     } else if (c1 === 'water') {
@@ -185,9 +185,9 @@ function nextRound() {
 
 function resetRound() {
     currentRoundChoices = { p1: null, p2: null };
-    
+
     revealArea.classList.add('hidden');
-    
+
     turnBanner.classList.remove('hidden');
     choicesContainer.classList.remove('hidden');
 }
@@ -203,10 +203,10 @@ function endMatch() {
         winnerAnnouncement.style.color = "var(--color-gun)";
         winIcon.innerText = "💀";
     }
-    
+
     winnerAnnouncement.innerText = matchWinner;
     winnerSubAnnouncement.innerText = `Final Score: ${scores.p1} - ${scores.p2}`;
-    
+
     switchScreen('win');
 }
 
