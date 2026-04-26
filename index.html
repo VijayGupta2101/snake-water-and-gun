@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Water Gun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-content">
+                <div class="logo-icons">
+                    <span class="icon-bounce">🐍</span>
+                    <span class="icon-bounce" style="animation-delay: 0.2s">💧</span>
+                    <span class="icon-bounce" style="animation-delay: 0.4s">🔫</span>
+                </div>
+                <h1 class="logo-title">
+                    <span class="color-snake">SNAKE</span>
+                    <span class="color-water">WATER</span>
+                    <span class="color-gun">GUN</span>
+                </h1>
+                <p class="subtitle">First to 5 points wins the match.</p>
+
+                <div class="input-group">
+                    <input type="text" id="player-input" placeholder="Enter your name..." maxlength="15" autocomplete="off">
+                </div>
+
+                <div class="mode-selection">
+                    <button class="btn btn-primary" onclick="initGame()">▶ Play Game</button>
+                    <button class="btn btn-secondary" onclick="exitGame()">✖ Exit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exit Screen -->
+        <div id="exit-screen" class="screen">
+            <div class="menu-content">
+                <h1 class="logo-title">Goodbye!</h1>
+                <p class="subtitle">Thanks for playing.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">You can safely close this tab now.</p>
+                <div style="margin-top:20px;">
+                    <button class="btn btn-primary" onclick="window.location.reload()">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Interface -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <button class="btn-back" onclick="goToMenu()">&#8592; Quit Match</button>
+                <div class="score-board">
+                    <div class="player-score">
+                        <span id="p1-name">Player</span>
+                        <h2 id="p1-score">0</h2>
+                    </div>
+                    <div class="score-divider">:</div>
+                    <div class="player-score">
+                        <span id="p2-name">Computer</span>
+                        <h2 id="p2-score">0</h2>
+                    </div>
+                </div>
+            </header>
+
+            <main class="game-arena">
+                <!-- Status display -->
+                <div id="turn-banner" class="turn-banner">
+                    <h3 id="status-text">Make Your Selection</h3>
+                    <p id="sub-status-text">Can you beat the AI?</p>
+                </div>
+
+                <!-- Choices -->
+                <div class="choices-container" id="choices-container">
+                    <button class="choice-btn snake-choice" onclick="makeChoice('snake')">
+                        <div class="icon">🐍</div>
+                        <span>Snake</span>
+                    </button>
+                    <button class="choice-btn water-choice" onclick="makeChoice('water')">
+                        <div class="icon">💧</div>
+                        <span>Water</span>
+                    </button>
+                    <button class="choice-btn gun-choice" onclick="makeChoice('gun')">
+                        <div class="icon">🔫</div>
+                        <span>Gun</span>
+                    </button>
+                </div>
+
+                <!-- Reveal Modal area relative -->
+                <div id="reveal-area" class="reveal-area hidden">
+                    <div class="reveal-content-wrapper">
+                        <div class="reveal-cards-row">
+                            <div class="reveal-card">
+                                <h4 id="reveal-p1-name">Player</h4>
+                                <div id="reveal-p1-choice" class="reveal-icon">❓</div>
+                            </div>
+                            <div class="vs-text">VS</div>
+                            <div class="reveal-card">
+                                <h4 id="reveal-p2-name">Computer</h4>
+                                <div id="reveal-p2-choice" class="reveal-icon">❓</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Next round prompt now positioned inside the reveal flow to prevent overlap -->
+                        <div id="next-round-container" class="next-round-container">
+                            <h3 id="round-result-text">Player Wins the Round!</h3>
+                            <button id="btn-next-round" class="btn btn-primary btn-large" onclick="nextRound()">Next Round</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Win Screen -->
+        <div id="win-screen" class="screen">
+            <div class="win-content">
+                <div class="trophy-icon" id="win-icon">🏆</div>
+                <h1 id="winner-announcement">Player Wins!</h1>
+                <p id="winner-sub-announcement">Match Over</p>
+                <div class="win-actions">
+                    <button class="btn btn-primary" onclick="rematch()">Play Again</button>
+                    <button class="btn btn-secondary" onclick="goToMenu()">Main Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
