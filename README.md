@@ -81,10 +81,7 @@ Snake-Water-Gun/
 
 ## Author
 
-Vijay Gupta with antigrawity....
-Student focused on Data Analysis and Data Science
-Skills include Python, C++, Java, JavaScript, SQL, PHP, and Power BI
-
+Vijay Gupta with the help of antigrawity....
 ---
 
 ## Contribution
